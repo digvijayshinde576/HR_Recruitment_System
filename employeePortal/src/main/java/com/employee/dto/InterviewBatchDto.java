@@ -1,6 +1,7 @@
 package com.employee.dto;
 
 import com.employee.annotation.NullOrNotBlank;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PastOrPresent;
@@ -19,6 +20,7 @@ public class InterviewBatchDto {
         private Long id;
 
         @NotNull(message = "Interview date is required.")
+        @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
         private LocalDate interviewDate;
 
         @NullOrNotBlank(min = 5, max = 20, message = "Time slot is required and must be between {min} and {max} characters.")
