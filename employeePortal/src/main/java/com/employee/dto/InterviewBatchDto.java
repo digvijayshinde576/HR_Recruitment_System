@@ -1,34 +1,35 @@
 package com.employee.dto;
 
 import com.employee.annotation.NullOrNotBlank;
-import com.fasterxml.jackson.annotation.JsonFormat;
+import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.PastOrPresent;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDate;
 import java.util.List;
 
-@Data
-@NoArgsConstructor
+@Setter
+@Getter
 @AllArgsConstructor
+@NoArgsConstructor
 public class InterviewBatchDto {
 
-        private Long id;
+    private Long id;
 
-        @NotNull(message = "Interview date is required.")
-        @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-        private LocalDate interviewDate;
+    @NotNull(message = "Interview date is required.")
+    @FutureOrPresent(message = "Interview date must be today or in the future.")
+    private LocalDate interviewDate;
 
-        @NullOrNotBlank(min = 5, max = 20, message = "Time slot is required and must be between {min} and {max} characters.")
-        private String timeSlot;
+    @NullOrNotBlank(min = 4, max = 20, isMandatory = "yes", message = "Time slot is required and must be between {min} and {max} characters.")
+    private String timeSlot;
 
-        @NotNull(message = "Position ID is required.")
-        private Long positionId;
+    @NotNull(message = "Position ID is required.")
+    private Long positionId;
 
-        @NotEmpty(message = "At least one candidate must be assigned.")
-        private List<Long> candidateIds;
+    @NotEmpty(message = "At least one candidate ID must be provided.")
+    private List<Long> candidateIds;
 }

@@ -1,34 +1,25 @@
 package com.employee.dto;
 
-import com.employee.annotation.NullOrNotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.List;
 
-@Data
-@NoArgsConstructor
+@Setter
+@Getter
 @AllArgsConstructor
+@NoArgsConstructor
 public class InterviewerDto {
 
-        @NotNull(message = "Interviewer ID is required.")
-        private Long id;
+    private Long id;
 
-        @NullOrNotBlank(min = 5, max = 50, message = "Name must be between {min} and {max} characters.")
-        private String name;
+    @NotNull(message = "Employee ID is required for the interviewer.")
+    private Long employeeId;
 
-        @NullOrNotBlank(isEmail = "yes", min = 5, max = 50, message = "Valid email address is required.")
-        private String email;
-
-        @NullOrNotBlank(min = 5, max = 50, message = "Department name must be between {min} and {max} characters.")
-        private String department;
-
-        @NullOrNotBlank(min = 5, max = 50, message = "Job title must be between {min} and {max} characters.")
-        private String jobTitle;
-
-        @NotEmpty(message = "At least one application ID must be provided.")
-        private List<Long> applicationIds;
+    @NotEmpty(message = "At least one interview batch ID must be assigned to the interviewer.")
+    private List<Long> interviewBatchIds;
 }

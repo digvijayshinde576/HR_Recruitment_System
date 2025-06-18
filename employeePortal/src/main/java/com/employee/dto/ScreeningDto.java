@@ -1,24 +1,27 @@
 package com.employee.dto;
 
+
 import com.employee.annotation.NullOrNotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
-@NoArgsConstructor
+@Setter
+@Getter
 @AllArgsConstructor
+@NoArgsConstructor
 public class ScreeningDto {
 
-        private Long id;
+    private Long id;
 
-        @NotNull(message = "Candidate CV ID is required.")
-        private Long candidateCVId;
+    @NotNull(message = "Candidate CV ID is required for screening.")
+    private Long candidateCVId;
 
-        @NullOrNotBlank(min = 5, max = 50, message = "Screening result is required and must be between {min} and {max} characters.")
-        private String screeningResult;
+    @NullOrNotBlank(isMandatory = "yes", message = "Screening result is required and must be 'Selected' or 'Rejected'.")
+    private String screeningResult;
 
-        @NullOrNotBlank(min = 5, max = 50, message = "Rejection reason must be between {min} and {max} characters if provided.", isMandatory = "no")
-        private String rejectionReason;
+    @NullOrNotBlank(min = 5, max = 255, isMandatory = "no", message = "Rejection reason must be 5 to 255 characters if provided.")
+    private String rejectionReason;
 }

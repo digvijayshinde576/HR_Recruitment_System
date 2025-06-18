@@ -1,4 +1,4 @@
 package com.employee.entity;
 
-public class ScreeningEntity {
+public class Screening {
 }

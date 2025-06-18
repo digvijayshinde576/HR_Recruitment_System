@@ -2,7 +2,6 @@ package com.employee.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.w3c.dom.stylesheets.LinkStyle;
 
 import java.util.List;
 
@@ -12,7 +11,7 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class CompanyEntity {
+public class Company {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,18 +23,18 @@ public class CompanyEntity {
     @Column(nullable = false, length = 255)
     private String address;
 
-    @Column(nullable = false, length = 15)
-    private String phone;
-
     @Column(length = 100)
     private String website;
 
     @Column(nullable = false, length = 50)
     private String industry;
 
-    @OneToMany(mappedBy = "companyEntity", cascade = CascadeType.ALL,orphanRemoval = true)
-    private List<DepartmentEntity> departmentEntity;
+    @OneToMany(mappedBy = "company", cascade = CascadeType.ALL,orphanRemoval = true)
+    private List<Department> department;
 
-    @OneToMany(mappedBy = "companyEntity", cascade = CascadeType.ALL,orphanRemoval = true)
-    private List<EmployeeEntity> employeeEntities;
+//    @OneToMany(mappedBy = "company", cascade = CascadeType.ALL,orphanRemoval = true)
+//    private List<Employee> employee;
+
+
+
 }

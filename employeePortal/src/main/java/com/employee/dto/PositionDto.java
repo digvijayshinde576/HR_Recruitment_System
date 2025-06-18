@@ -1,28 +1,32 @@
 package com.employee.dto;
 
+
 import com.employee.annotation.NullOrNotBlank;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
-@NoArgsConstructor
+@Setter
+@Getter
 @AllArgsConstructor
+@NoArgsConstructor
 public class PositionDto {
 
-        private Long id;
+    private Long id;
 
-        @NullOrNotBlank(min = 5, max = 100, message = "Title is required and must be between {min} and {max} characters.")
-        private String title;
+    @NullOrNotBlank(min = 2, max = 100, isMandatory = "yes", message = "Position title is required and must be between {min} and {max} characters.")
+    private String title;
 
-        @NotNull(message = "Department ID is required.")
-        private Long departmentId;
+    @NotNull(message = "Department ID is required for the position.")
+    private Long departmentId;
 
+    @NotNull(message = "Sub-category ID is required for the position.")
+    private Long subCategoryId;
 
-        private Long subCategoryId;
-
-
-        private RequirementCriteriaDto criteria;
+    @Valid
+    @NotNull(message = "Requirement criteria is required.")
+    private RequirementCriteriaDto criteria;
 }

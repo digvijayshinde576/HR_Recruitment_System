@@ -1,28 +1,36 @@
 package com.employee.dto;
 
 import com.employee.annotation.NullOrNotBlank;
-import lombok.*;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import java.util.List;
 
 @Setter
 @Getter
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class CompanyDto {
 
-        private Long id;
+    @NullOrNotBlank(min = 2, max = 100, isMandatory = "yes", message = "Company name is required and must be between {min} and {max} characters.")
+    private String name;
 
-        @NullOrNotBlank(min = 2, max = 100, message = "Company name must be between {min} and {max} characters.")
-        private String name;
+    @NullOrNotBlank(min = 5, max = 255, isMandatory = "no", message = "Address (optional) must be between {min} and {max} characters if provided.")
+    private String address;
 
-        @NullOrNotBlank(min = 5, max = 255, message = "Address must be between {min} and {max} characters.")
-        private String address;
+    @NullOrNotBlank(min = 2, max = 50, isMandatory = "no", message = "Industry (optional) must be between {min} and {max} characters if provided.")
+    private String industry;
 
-        @NullOrNotBlank(min = 10, max = 15, message = "Phone number must be between {min} and {max} digits.")
-        private String phone;
+    @NullOrNotBlank(min = 2, max = 100, isMandatory = "yes", message = "Website must be between {min} and {max} characters if provided.")
+    private String website;
 
-        @NullOrNotBlank(isMandatory = "no", min = 5, max = 100, message = "Website URL must be between {min} and {max} characters if provided.")
-        private String website;
+//    private List<DepartmentDto> departments;
 
-        @NullOrNotBlank(min = 2, max = 50, message = "Industry must be between {min} and {max} characters.")
-        private String industry;
+
 }
+

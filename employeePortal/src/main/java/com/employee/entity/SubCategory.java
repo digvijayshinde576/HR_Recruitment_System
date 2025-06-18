@@ -1,18 +1,17 @@
 package com.employee.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.List;
 
 @Entity
 @Table(name = "sub_categories")
-@Data
+@Setter
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class SubCategoryEntity {
+public class SubCategory {
 
     @Id
     @SequenceGenerator(name = "employee_seq", sequenceName = "employee_seq", allocationSize = 1)
@@ -23,10 +22,9 @@ public class SubCategoryEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "department_id")
-    private DepartmentEntity departmentEntity;
+    private Department department;
 
-    @OneToMany(mappedBy = "subCategoryEntity", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<EmployeeEntity> employeeEntities;
+    @OneToMany(mappedBy = "subCategory", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Employee> employee;
 
-
-}
+   }

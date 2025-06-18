@@ -1,0 +1,21 @@
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/employeePortal
+    username: postgres
+    password: root
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update  # use "validate", "create", or "none" based on your needs
+    show-sql: true
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+  # Optional: Logging SQL parameters (useful for debugging)
+  jpa.properties:
+    hibernate.format_sql: true
+
+# Server config (optional)
+server:
+  port: 8080

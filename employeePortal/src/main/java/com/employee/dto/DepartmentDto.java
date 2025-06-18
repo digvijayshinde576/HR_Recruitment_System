@@ -1,25 +1,32 @@
 package com.employee.dto;
 
 import com.employee.annotation.NullOrNotBlank;
-import jakarta.validation.constraints.NotNull;
-import lombok.*;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import java.util.List;
 
 @Setter
 @Getter
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class DepartmentDto {
 
-        private Long id;
+    @NullOrNotBlank(min = 2, max = 100, isMandatory = "yes", message = "Department name is required and must be between {min} and {max} characters.")
+    private String name;
 
-        @NullOrNotBlank(min = 2, max = 100, message = "Department name must be between {min} and {max} characters.")
-        private String name;
+    @NullOrNotBlank(isMandatory = "no", min = 5, max = 255, message = "Description (optional) must be between {min} and {max} characters.")
+    private String description;
 
-        @NullOrNotBlank(isMandatory = "no", min = 5, max = 255, message = "Description (optional) must be between {min} and {max} characters.")
-        private String description;
+    private List<SubCategoryDto> subCategories;
 
-        @NotNull(message = "Company ID is required.")
-        private Long companyId;
+//    @NotNull(message = "Company ID is required for department.")
+//    private Long companyId;
 
 
 }

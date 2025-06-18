@@ -11,7 +11,7 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class DepartmentEntity {
+public class Department {
 
     @Id
     @SequenceGenerator(name = "department_seq", sequenceName = "department_seq", allocationSize = 1)
@@ -25,11 +25,13 @@ public class DepartmentEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "company_id")
-    private CompanyEntity companyEntity;
+    private Company company;
 
-    @OneToMany(mappedBy = "departmentEntity",cascade = CascadeType.ALL,orphanRemoval = true)
-    private List<SubCategoryEntity> subCategoryEntities;
+    @OneToMany(mappedBy = "department",cascade = CascadeType.ALL,orphanRemoval = true)
+    private List<SubCategory> subCategories;
 
-    @OneToMany(mappedBy = "departmentEntity",cascade = CascadeType.ALL,orphanRemoval = true)
-    private List<EmployeeEntity> employeeEntities;
+    @OneToMany(mappedBy = "department",cascade = CascadeType.ALL,orphanRemoval = true)
+    private List<Employee> employee;
+
+
 }

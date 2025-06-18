@@ -1,4 +1,4 @@
 package com.employee.entity;
 
-public class PositionEntity {
+public class Interviewer {
 }
