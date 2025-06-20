@@ -12,6 +12,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -29,8 +30,9 @@ public class CompanyServiceImpl implements CompanyService {
 
     @Override
     public List<CompanyResponseDto> getAll() {
-        List<Company> companies = companyRepository.findAll();
-        return companyMapper.listCompanyToCompanyResponseDto(companies);
+       return companyRepository.findAll().stream()
+               .map(companyMapper::companyToCompanyResponseDto)
+               .collect(Collectors.toList());
     }
 
 

@@ -20,7 +20,6 @@ public interface CompanyMapper {
             @Mapping(source = "address", target = "address"),
             @Mapping(source = "industry", target = "industry"),
             @Mapping(source = "website", target = "website"),
-           // @Mapping(source = "department", target = "department")
     })
     Company companyDtoToCompanyEntity(CompanyDto dto);
 
@@ -28,10 +27,8 @@ public interface CompanyMapper {
     @Mapping(source = "address", target = "address")
     @Mapping(source = "industry", target = "industry")
     @Mapping(source = "website", target = "website")
-   // @Mapping(source = "department", target = "department")
     CompanyResponseDto companyToCompanyResponseDto(Company entity);
 
-    List<CompanyResponseDto> listCompanyToCompanyResponseDto(List<Company> companies);
 
 }
 
